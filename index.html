@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Pepper Guessing Game">
+    <meta name="author" content="Guilherme NUNES TROFINO">
+    <meta name="keywords" content="Pepper, Guessing Game">
+    <base href="https://tr0fin0.github.io/pepper/">
+    <title>Pepper Guessing Game</title>
+    <style>
+:root {
+    /* colors */
+    --color-background: #1d1f20;
+
+    --color-border: #7b7265;
+
+    --color-button: #007bff;
+    --color-button-hover: #0056b3;
+    --color-button-hover-green: rgba(0, 128, 0, 0.250);
+    --color-button-hover-red: rgba(128, 0, 0, 0.250);
+
+    --color-text: #ffffff;
+
+    --color-shadow: rgba(0, 0, 0, 0.2);
+
+
+    /* layout */
+    --body-height: 1000px;
+
+    --button-width: 250px;
+    --button-height: 100px;
+    --button-big-width: 500px;
+    --button-big-height: 675px;
+
+    --container-width: 1280px;
+    --container-height: 800px;
+
+    --border-radius: 10px;
+
+    --image-height: 575px;
+    --image-miniture-height: 275px;
+
+
+    /* shadows */
+    --container-shadow: 0 4px 8px;
+
+
+    /* spacing */
+    --body-margin: 0px;
+    --body-padding: 0px;
+
+    --container-padding: 20px;
+
+    --image-margin: 10px;
+
+
+    /* typography */
+    --font-family: 'Arial', sans-serif;
+    --button-font-size: 2em;
+}
+
+
+
+body {
+    background-color: var(--color-background);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--body-height);
+
+    margin: var(--body-margin);
+    padding: var(--body-padding);
+
+    font-family: var(--font-family);
+    text-align: center;
+    color: white;
+}
+
+#container-game {
+    background-color: var(--color-background);
+
+    position: relative;
+    width: var(--container-width);
+    height: var(--container-height);
+
+    border: var(--border-radius) solid var(--color-border);
+    box-shadow: var(--container-shadow) var(--color-shadow);
+    padding: var(--container-padding);
+
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+
+img {
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.image-centered {
+    height: var(--image-height);
+}
+
+.image-miniture {
+    height: var(--image-miniture-height);
+
+    margin: var(--image-margin);
+}
+
+
+button {
+    background-color: var(--color-button);
+    color: var(--color-text);
+
+    cursor: pointer;
+    position: absolute;
+    width: var(--button-width);
+    height: var(--button-height);
+
+    border: none;
+    border-radius: var(--border-radius);
+
+    font-size: var(--button-font-size);
+}
+
+button:hover {
+    background-color: var(--color-button-hover);
+}
+
+.button-centered {
+    left: 540px;
+    bottom: 35px;
+}
+
+.button-big-left {
+    left: 100px;
+    bottom: 35px;
+
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+}
+
+.button-big-right {
+    right: 100px;
+    bottom: 35px;
+
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+}
+
+.button-small-left {
+    left: 350px;
+    bottom: 35px;
+}
+
+.button-small-right {
+    right: 350px;
+    bottom: 35px;
+}
+
+.hover-green:hover {
+    background-color: var(--color-button-hover-green);
+}
+
+.hover-red:hover {
+    background-color: var(--color-button-hover-red);
+}
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/pepper/assets/icons/question-mark.svg">
+</head>
+
+<body>
+    <div id="container-game">
+        <div id="screen-start">
+            <h1 class="message-headline" id="message-start">Welcome to the Guessing Game!</h1>
+            <img class="image-centered" id="image-start" src="/pepper/assets/images/pepper-robot-7x5.jpg" alt="Pepper Robot" loading="'lazy">
+            <button class="button-centered" id="button-start" role="button">start</button>
+        </div>
+
+
+        <div id="screen-mode" class="hidden">
+            <h1 class="message" id="message-mode">please choose game mode</h1>
+            <button class="button-big-left" id="button-guess" role="button">guess</button>
+            <button class="button-big-right" id="button-guesser" role="button">guesser</button>
+        </div>
+
+
+        <div id="screen-animal" class="hidden">
+            <h1 class="message-headline" id="message-animal"></h1>
+            <img class="image-miniture" id="image-butterfly" src="/pepper/assets/images/butterfly-7x5.jpg" alt="Picture Butterfly" loading="'lazy">
+            <img class="image-miniture" id="image-chimpanzee" src="/pepper/assets/images/chimpanzee-7x5.jpg" alt="Picture Chimpanzee" loading="'lazy">
+            <img class="image-miniture" id="image-eagle" src="/pepper/assets/images/eagle-7x5.jpg" alt="Picture Eagle" loading="'lazy">
+            <img class="image-miniture" id="image-frog" src="/pepper/assets/images/frog-7x5.jpg" alt="Picture Frog" loading="'lazy">
+            <img class="image-miniture" id="image-salmon" src="/pepper/assets/images/salmon-7x5.jpg" alt="Picture Salmon" loading="'lazy">
+            <img class="image-miniture" id="image-snake" src="/pepper/assets/images/snake-7x5.jpg" alt="Picture Snake" loading="'lazy">
+            <button class="button-centered" id="button-continue" role="button">continue</button>
+        </div>
+
+
+        <div id="screen-question" class="hidden">
+            <h1 class="message-headline" id="message-question"></h1>
+            <button class="button-big-left hover-green" id="button-yes" role="button">yes</button>
+            <button class="button-big-right hover-red" id="button-no" role="button">no</button>
+        </div>
+
+
+        <div id="screen-guess" class="hidden">
+            <h1 class="message-headline" id="message-guess"></h1>
+            <img class="image-centered" id="image-guess" src="/pepper/assets/images/pepper-robot-7x5.jpg" alt="Picture Guessed" loading="'lazy">
+            <button class="button-small-left hover-green" id="button-correct" role="button">correct</button>
+            <button class="button-small-right hover-red" id="button-incorrect" role="button">incorrect</button>
+        </div>
+
+
+        <div id="screen-result" class="hidden">
+            <h1 class="message-headline" id="message-result"></h1>
+            <img class="image-centered" id="image-result" src="/pepper/assets/images/pepper-robot-7x5.jpg" alt="Picture Result" loading="'lazy">
+            <button class="button-centered" id="button-replay" role="button">replay</button>
+        </div>
+    </div>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    // extract page elements
+    const elements = {
+        screens: {
+            start: document.getElementById("screen-start"),
+            mode: document.getElementById("screen-mode"),
+            animals: document.getElementById("screen-animal"),
+            question: document.getElementById("screen-question"),
+            guess: document.getElementById("screen-guess"),
+            result: document.getElementById("screen-result"),
+        },
+        buttons: {
+            start: document.getElementById("button-start"),
+            guess: document.getElementById("button-guess"),
+            guesser: document.getElementById("button-guesser"),
+            continue: document.getElementById("button-continue"),
+            yes: document.getElementById("button-yes"),
+            no: document.getElementById("button-no"),
+            correct: document.getElementById("button-correct"),
+            incorrect: document.getElementById("button-incorrect"),
+            replay: document.getElementById("button-replay"),
+        },
+        messages: {
+            animal: document.getElementById("message-animal"),
+            question: document.getElementById("message-question"),
+            guess: document.getElementById("message-guess"),
+            result: document.getElementById("message-result"),
+        },
+        images: {
+            guess: document.getElementById("image-guess"),
+            result: document.getElementById("image-result"),
+        }
+    };
+
+    // questions decision tree
+    const questions = [
+        { yes: 1, no: 2, text: "does it have legs?", path: null },              // 00
+        { yes: 6, no: 8, text: "is it a mammal?", path: null },                 // 01
+        { yes: 3, no: 4, text: "does it fly?", path: null },                    // 02
+        { yes: 5, no: 7, text: "is it an insect?", path: null },                // 03
+        { yes: 9, no: 10, text: "does it swim?", path: null },                  // 04
+        { yes: null, no: null, text: "Butterfly", path: "butterfly-7x5.jpg" },  // 05
+        { yes: null, no: null, text: "Chimpanzee", path: "chimpanzee-7x5.jpg" },// 06
+        { yes: null, no: null, text: "Eagle", path: "eagle-7x5.jpg" },          // 07
+        { yes: null, no: null, text: "Frog", path: "frog-7x5.jpg" },            // 08
+        { yes: null, no: null, text: "Salmon", path: "salmon-7x5.jpg" },        // 09
+        { yes: null, no: null, text: "Snake", path: "snake-7x5.jpg" },          // 10
+    ];
+    let currentQuestion = 0;
+    let isGuess = true;
+    let isGuessCorrect = true;
+
+    // Utility functions
+    const switchScreen = (hide, show) => {
+        hide.classList.add("hidden");
+        show.classList.remove("hidden");
+    };
+
+    const updateMessage = (element, text) => {
+        elements.messages[element].textContent = text;
+    };
+
+    const updateImage = (image, path, isRedScale = false) => {
+        const imageElement = elements.images[image];
+
+        if (imageElement) {
+            imageElement.src = `/pepper/assets/images/${path}`;
+            imageElement.style.filter = isRedScale
+                ? "grayscale(100%) sepia(100%) saturate(500%) hue-rotate(-50deg)"
+                : "none";
+        } else {
+            console.error(`Element with id "${image}" not found.`);
+        }
+    };
+
+    const sendData = () => {
+        fetch('http://127.0.0.1:5000/guess-game', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                animal: questions[currentQuestion].text,
+                isGuess: isGuess, 
+                isGuesser: isGuessCorrect,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error))
+    };
+
+    // Handle answers (Yes/No) in the decision tree
+    const handleAnswer = (answer) => {
+        currentQuestion = questions[currentQuestion][answer];
+        updateMessage("question", questions[currentQuestion].text);
+
+        if (questions[currentQuestion].yes === questions[currentQuestion].no) {
+            updateMessage("guess", `is it a ${questions[currentQuestion].text}?`);
+            updateImage("guess", questions[currentQuestion].path);
+            switchScreen(elements.screens.question, elements.screens.guess);
+        }
+    };
+
+    elements.buttons.yes.addEventListener("click", () => handleAnswer("yes"));
+    elements.buttons.no.addEventListener("click", () => handleAnswer("no"));
+
+    elements.buttons.correct.addEventListener("click", () => {
+        switchScreen(elements.screens.guess, elements.screens.result);
+
+        updateMessage("result", `it's a ${questions[currentQuestion].text}!`);
+        updateImage("result", questions[currentQuestion].path, false);
+    });
+
+    elements.buttons.incorrect.addEventListener("click", () => {
+        isGuessCorrect = false;
+        switchScreen(elements.screens.guess, elements.screens.result);
+
+        updateMessage("result", `it's not a ${questions[currentQuestion].text}?`);
+        updateImage("result", questions[currentQuestion].path, true);
+    });
+
+    // Event listeners
+    const buttonActions = {
+        start: () => {
+            switchScreen(elements.screens.start, elements.screens.mode);
+        },
+        guess: () => {
+            updateMessage("animal", "animals you can guess");
+            switchScreen(elements.screens.mode, elements.screens.animals);
+        },
+        guesser: () => {
+            isGuess = false;
+
+            updateMessage("animal", "animal I can guess");
+            switchScreen(elements.screens.mode, elements.screens.animals);
+        },
+        continue: () => {
+            currentQuestion = 0;
+            updateMessage("question", questions[currentQuestion].text);
+            switchScreen(elements.screens.animals, elements.screens.question);
+        },
+        replay: () => {
+            switchScreen(elements.screens.result, elements.screens.start)
+            sendData()
+        },
+    };
+
+    Object.entries(buttonActions).forEach(([buttonName, action]) => {
+        elements.buttons[buttonName].addEventListener("click", action);
+    });
+});
+    </script>
+</body>
+</html>
